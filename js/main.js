@@ -1,3 +1,4 @@
+
 (function ($) {
     "use strict";
 
@@ -130,4 +131,37 @@
     });
 
 })(jQuery);
+function sendEmail(){
+    const templateParams={
+        name: document.querySelector("#name").value,
+        email: document.querySelector("#email").value,
+        subject: document.querySelector("#subject").value,
+        message: document.querySelector("#message").value
+    };
+
+    emailjs.send("service_ly1z5dg","template_banowuo",templateParams).then(
+        ()=> alert("Email Sent!!")
+    ).catch(()=>alert("Email Not Sent!!"));
+}
+function sendBoth(event){
+    event.preventDefault();
+    const form = document.querySelector('#contact-form');
+    const templateParams={
+        name: document.querySelector("#name").value,
+        email: document.querySelector("#email").value,
+        subject: document.querySelector("#subject").value,
+        message: document.querySelector("#message").value
+    };
+
+    // Send email via emailjs
+    emailjs.send("service_cz0wsr2","template_eulwqq6",templateParams).then(
+        () => {
+            alert("Email Sent !!");
+            form.reset();
+        },
+        () => {
+            alert("Email Not Sent !!");
+        }
+    );
+};
 
